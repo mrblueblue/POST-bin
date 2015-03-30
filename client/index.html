@@ -1,11 +1,25 @@
 <!doctype html>
 <html ng-app="PostBin">
   <head>
+    <link rel="stylesheet" href="../bower_components/angular-material/angular-material.css">
+    <link rel="stylesheet" href="style.css">
   </head>
   <body>
-  	<h1>POST Bin</h1>	
-    <div ui-view></div>
-    <script src="../node_modules/angular/angular.min.js"></script>
+    <div class="app-container" layout="column" ng-controller="AppController">
+    <md-toolbar>
+      <h1>Postbin</h1>
+    </md-toolbar>
+      <ng-view>
+        <md-content>
+          <p>{{ data }}</p>
+        </md-content>
+      </ng-view>
+    </div>
+    <script src="../bower_components/angular/angular.min.js"></script>
+    <script src="../bower_components/angular-route/angular-route.min.js"></script>
+    <script src="../bower_components/angular-animate/angular-animate.min.js"></script>
+    <script src="../bower_components/angular-aria/angular-aria.min.js"></script>
+    <script src="../bower_components/angular-material/angular-material.min.js"></script>
     <script src="app.js"></script>
   </body>
 </html>

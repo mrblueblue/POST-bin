@@ -1,0 +1,11 @@
+.app-container {
+  margin: 5% 20%;
+}
+
+md-toolbar, md-content {
+  padding: 0 15px;
+}
+
+md-content{
+   background-color: #689F38;
+}
