@@ -11,7 +11,13 @@
     </md-toolbar>
       <ng-view>
         <md-content>
-          <p>The server says: {{ data }}</p>
+          <p>Here is the POST data</p>
+          <ul>
+            <li ng-repeat="datum in data track by $index">
+              {{ datum }}
+              <br>
+            </li>
+          </ul>
         </md-content>
       </ng-view>
     </div>
