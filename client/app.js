@@ -14,8 +14,10 @@ app.controller('AppController', function($scope){
 
   socket.on('news', function(data){
   	$scope.$apply(function(){
-  		console.log(data);
-  		$scope.data.push(JSON.stringify(data));
+  		var obj = {}
+  		obj.headers = data.headers;
+  		obj.body = data.body;
+  		$scope.data.push(obj);
   	});
 
   	socket.emit('my other event', {message : 'Hello from Angular'});
