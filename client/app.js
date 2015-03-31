@@ -13,6 +13,7 @@ app.controller('AppController', function($scope){
   		obj.body = data.body;
   		obj.timestamp = new Date();
   		$scope.data.push(obj);
+  		console.log(obj)
   	});
   	socket.emit('my other event', {message : 'Hello from Angular'});
   });
