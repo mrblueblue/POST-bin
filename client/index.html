@@ -1,29 +1,33 @@
 <!doctype html>
 <html ng-app="PostBin">
   <head>
+    <link href='http://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="./bower_components/angular-material/angular-material.css">
     <link rel="stylesheet" href="style.css">
   </head>
   <body>
     <div class="app-container" layout="column" ng-controller="AppController">
     <md-toolbar>
-      <h1>Postbin</h1>
+      <h1>postbin</h1>
     </md-toolbar>
-      <ng-view>
-        <md-content>
-          <p>Here is the POST data</p>
-          <ul>
-            <li ng-repeat="datum in data track by $index">
-              {{ datum.headers }}
+    <ng-view>
+      <md-content>
+      <h3 md-subheader>Here is the POST data</h3>
+        <md-list>
+          <md-item ng-repeat="datum in data track by $index">
+            <md-item-content>
+            <div class="md-tile-content">
+              <h5>{{ datum.timestamp | date:'MM/dd/yyyy @ h:mma'}}</h5>
+              <h4>{{ datum.headers }}</h4>
               <br>
-              <br>
-              {{ datum.body }}
-              <br>
-              <br>
-            </li>
-          </ul>
-        </md-content>
-      </ng-view>
+              <p>{{ datum.body }}</p>
+            </div>
+            </md-item-content>
+          <md-divider ng-if="!$last"></md-divider>
+          </md-item>
+        </md-list>
+      </md-content>
+    </ng-view>
     </div>
     <script src="./bower_components/angular/angular.min.js"></script>
     <script src="./bower_components/angular-route/angular-route.min.js"></script>
