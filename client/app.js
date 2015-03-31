@@ -2,12 +2,6 @@
 var app = angular.module('PostBin', ['ngMaterial']);
 var socket = io.connect('http://localhost:3000');
 
-app.config(function($mdThemingProvider) {
-  $mdThemingProvider.theme('default')
-	 .primaryPalette('indigo')
-   .accentPalette('blue-grey');
-});
-
 app.controller('AppController', function($scope){
 
 	$scope.data = [];
