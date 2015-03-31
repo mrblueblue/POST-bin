@@ -14,7 +14,11 @@
           <p>Here is the POST data</p>
           <ul>
             <li ng-repeat="datum in data track by $index">
-              {{ datum }}
+              {{ datum.headers }}
+              <br>
+              <br>
+              {{ datum.body }}
+              <br>
               <br>
             </li>
           </ul>
