@@ -1,7 +1,7 @@
 <!doctype html>
 <html ng-app="PostBin">
   <head>
-    <link rel="stylesheet" href="../bower_components/angular-material/angular-material.css">
+    <link rel="stylesheet" href="./bower_components/angular-material/angular-material.css">
     <link rel="stylesheet" href="style.css">
   </head>
   <body>
@@ -11,15 +11,16 @@
     </md-toolbar>
       <ng-view>
         <md-content>
-          <p>{{ data }}</p>
+          <p>The message from the server socket is: {{ data }}</p>
         </md-content>
       </ng-view>
     </div>
-    <script src="../bower_components/angular/angular.min.js"></script>
-    <script src="../bower_components/angular-route/angular-route.min.js"></script>
-    <script src="../bower_components/angular-animate/angular-animate.min.js"></script>
-    <script src="../bower_components/angular-aria/angular-aria.min.js"></script>
-    <script src="../bower_components/angular-material/angular-material.min.js"></script>
+    <script src="./bower_components/angular/angular.min.js"></script>
+    <script src="./bower_components/angular-route/angular-route.min.js"></script>
+    <script src="./bower_components/angular-animate/angular-animate.min.js"></script>
+    <script src="./bower_components/angular-aria/angular-aria.min.js"></script>
+    <script src="./bower_components/angular-material/angular-material.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
     <script src="app.js"></script>
   </body>
 </html>
