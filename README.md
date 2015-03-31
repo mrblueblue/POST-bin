@@ -8,10 +8,13 @@ Then add an upstream remote to the origin.
 
 	git remote add upstream https://github.com/levity-io/POST-bin.git
 
+#####Installation
+
 Before writing any code, download all the dependencies:
 
-	bower install
 	npm install
+	cd client
+	bower install
 
 Add, Commit, Pull Request, Merge, Rebase, Repeat!
 
