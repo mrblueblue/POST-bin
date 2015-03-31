@@ -9,16 +9,19 @@ app.config(function($mdThemingProvider) {
 });
 
 app.controller('AppController', function($scope){
+
+	$scope.data = [];
+
   socket.on('news', function(data){
-  	console.log('connected to a websocket!');
-  	console.log('here is the message: ', data);
   	$scope.$apply(function(){
-  		$scope.data = JSON.stringify(data);
+  		console.log(data);
+  		$scope.data.push(JSON.stringify(data));
   	});
+
   	socket.emit('my other event', {message : 'Hello from Angular'});
-  })
-})
+  });
+});
 
 app.run(function(){
-	console.log("I am an AngularJS app that uses Sockets!!")
-})
+	console.log("I am an AngularJS app that uses Sockets!!");
+});
