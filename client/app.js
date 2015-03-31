@@ -14,12 +14,12 @@ app.controller('AppController', function($scope){
 
   socket.on('news', function(data){
   	$scope.$apply(function(){
-  		var obj = {}
+  		var obj = {};
   		obj.headers = data.headers;
   		obj.body = data.body;
+  		obj.timestamp = new Date();
   		$scope.data.push(obj);
   	});
-
   	socket.emit('my other event', {message : 'Hello from Angular'});
   });
 });
