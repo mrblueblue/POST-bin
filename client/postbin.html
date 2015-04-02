@@ -1,0 +1,17 @@
+<md-content>
+  <md-list>
+    <md-item ng-repeat="datum in data track by $index">
+      <md-item-content>
+      <div class="md-tile-content">
+        <h5>{{ datum.timestamp | date:'MM/dd/yyyy @ h:mma:sss'}}</h5>
+        <h3>Headers</h3>
+        <h4>{{ datum.headers }}</h4>
+        <br>
+        <h3>JSON</h3>
+        <h4>{{ datum.body }}</h4>
+      </div>
+      </md-item-content>
+    <md-divider ng-if="!$last"></md-divider>
+    </md-item>
+  </md-list>
+</md-content>

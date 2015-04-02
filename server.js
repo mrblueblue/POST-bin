@@ -2,15 +2,16 @@
 
 var express 	 = require('express'),
 		bodyParser = require('body-parser'),
-		morgan 	 = require('morgan');
+		morgan 	   = require('morgan'),
+    shortid    = require('shortid');
 
-var logger = require('./logger.js'),
-		config = require('./config.js');
+var logger  = require('./logger.js'),
+		config  = require('./config.js');
 
-var app = express();
+var app    = express();
 var server = require('http').createServer(app);
-var io = require('socket.io')(server);
-var port = config.server.port; 
+var io     = require('socket.io')(server);
+var port   = config.server.port; 
 
 // EXPRESS CONFIGRATIONS
 app.use(morgan('dev'));
@@ -22,6 +23,12 @@ app.use(express.static(__dirname + '/client/'));
 app.use(bodyParser.json());
 
 // Routes
+app.get('/binid', function(req, res){
+  var binID = shortid.generate();
+  logger.info(binID);
+  res.status(201).send(binID);
+});
+
 app.post('/postbin', function(req, res){
 	logger.warn('warning');
   logger.data("body", req.body);

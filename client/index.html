@@ -5,30 +5,13 @@
     <link rel="stylesheet" href="style.css">
   </head>
   <body>
-    <div class="app-container" layout="column" ng-controller="AppController">
+    <div class="app-container" layout="column" ng-controller="PostController">
     <md-toolbar class="md-theme-light">
       <h1 class="md-toolbar-tools">
         <span>POSTBIN</span>
       </h1>
     </md-toolbar>
     <ng-view>
-      <md-content>
-        <md-list>
-          <md-item ng-repeat="datum in data track by $index">
-            <md-item-content>
-            <div class="md-tile-content">
-              <h5>{{ datum.timestamp | date:'MM/dd/yyyy @ h:mma'}}</h5>
-              <h3>Headers</h3>
-              <h4>{{ datum.headers }}</h4>
-              <br>
-              <h3>JSON</h3>
-              <h4>{{ datum.body }}</h4>
-            </div>
-            </md-item-content>
-          <md-divider ng-if="!$last"></md-divider>
-          </md-item>
-        </md-list>
-      </md-content>
     </ng-view>
     </div>
     <script src="./bower_components/angular/angular.min.js"></script>
