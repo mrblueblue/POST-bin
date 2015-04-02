@@ -5,25 +5,42 @@ var socket = io.connect('http://localhost:3000');
 app.config(function($routeProvider){
   $routeProvider
     .when('/', {templateUrl: 'landing.html', controller: 'BinController'})
-    .when('/:bin', {templateUrl: 'postbin.html', controller: 'PostController'})           
+    .when('/:binid', {templateUrl: 'postbin.html', controller: 'PostController'})           
 });
 
-app.controller('BinController', function($scope, Bin){
+app.controller('BinController', function($rootScope, $scope, $location, Bin){
 
-})
-
-app.service('Bin', function(){
-  this.create = function(session){
-    var bin = {};
-    return bin;
+  var setChannel = function(id){
+    $rootScope.channel = id;
   }
 
+  $scope.goToBin = function(){
+    Bin.getId(function(id){
+      setChannel(id);
+      $location.path('/' + id);
+    });
+  };
+})
+
+app.service('Bin', function($http){
+  this.getId = function(callback){
+    $http.get('/binid')
+      .success(function(data){
+        callback(data);
+      })
+      .error(function(data){
+        console.log('error', data);
+      });
+  };
 });
 
-app.controller('PostController', function($scope, Post){
-	$scope.data = [];
+app.controller('PostController', function($routeParams, $scope, Post){
 
-  socket.on('news', function(data){
+  $scope.data = [];
+  
+  $scope.channel = $scope.channel || $routeParams.binid
+
+  socket.on($scope.channel, function(data){
   	$scope.$apply(function(){
   		var postRequest = Post.create(data);
       $scope.data.push(postRequest);
