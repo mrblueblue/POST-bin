@@ -23,6 +23,7 @@ app.use(express.static(__dirname + '/client/'));
 app.use(bodyParser.json());
 
 // Routes
+
 app.get('/binid', function(req, res){
   var binID = shortid.generate();
   logger.info(binID);

@@ -2,14 +2,13 @@
 var app = angular.module('PostBin', ['ngMaterial', 'ngRoute']);
 var socket = io.connect('http://localhost:3000');
 
-app.config(function($routeProvider){
+app.config(function($routeProvider, $locationProvider){
   $routeProvider
     .when('/', {templateUrl: 'landing.html', controller: 'BinController'})
     .when('/:binid', {templateUrl: 'postbin.html', controller: 'PostController'})           
 });
 
 app.controller('BinController', function($rootScope, $scope, $location, Bin){
-
   var setChannel = function(id){
     $rootScope.channel = id;
   }
@@ -22,11 +21,10 @@ app.controller('BinController', function($rootScope, $scope, $location, Bin){
   };
 })
 
-app.controller('PostController', function($routeParams, $scope, Post){
-
+app.controller('PostController', function($routeParams, $location, $scope, Post){
   $scope.data = [];
-  
   $scope.channel = $scope.channel || $routeParams.binid
+  $scope.shortLink = 'http://localhost:3000' + $location.url();
 
   socket.on($scope.channel, function(data){
   	$scope.$apply(function(){
