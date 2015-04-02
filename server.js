@@ -29,11 +29,12 @@ app.get('/binid', function(req, res){
   res.status(201).send(binID);
 });
 
-app.post('/postbin', function(req, res){
+app.post('/:postbin', function(req, res){
 	logger.warn('warning');
+  logger.data('params', req.params.postbin);
   logger.data("body", req.body);
   logger.trace('headers', req.headers);
-  io.emit('news', {headers: req.headers, body: req.body});
+  io.emit(req.params.postbin, {headers: req.headers, body: req.body});
   res.status(202).send('POST received!');
 });
 

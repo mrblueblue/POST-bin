@@ -22,18 +22,6 @@ app.controller('BinController', function($rootScope, $scope, $location, Bin){
   };
 })
 
-app.service('Bin', function($http){
-  this.getId = function(callback){
-    $http.get('/binid')
-      .success(function(data){
-        callback(data);
-      })
-      .error(function(data){
-        console.log('error', data);
-      });
-  };
-});
-
 app.controller('PostController', function($routeParams, $scope, Post){
 
   $scope.data = [];
@@ -61,6 +49,17 @@ app.service('Post', function(){
   }
 });
 
+app.service('Bin', function($http){
+  this.getId = function(callback){
+    $http.get('/binid')
+      .success(function(data){
+        callback(data);
+      })
+      .error(function(data){
+        console.log('error', data);
+      });
+  };
+});
 
 app.run(function(){
 	console.log("I am an AngularJS app that uses Sockets!!");
