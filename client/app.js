@@ -2,7 +2,9 @@
 var app = angular.module('PostBin', ['ngMaterial', 'ngRoute']);
 var socket = io.connect('http://localhost:3000');
 
-app.config(function($routeProvider){
+app.config(function($routeProvider, $locationProvider){
+  $locationProvider.html5Mode(true);
+
   $routeProvider
     .when('/', {templateUrl: 'landing.html', controller: 'BinController'})
     .when('/:binid', {templateUrl: 'postbin.html', controller: 'PostController'})           
