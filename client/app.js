@@ -2,13 +2,15 @@
 var app = angular.module('PostBin', ['ngMaterial', 'ngRoute']);
 var socket = io.connect('http://localhost:3000');
 
-app.config(function($routeProvider, $locationProvider){
-  $routeProvider
-    .when('/', {templateUrl: 'landing.html', controller: 'BinController'})
-    .when('/:binid', {templateUrl: 'postbin.html', controller: 'PostController'})           
-});
-
 app.controller('BinController', function($rootScope, $scope, $location, Bin){
+  var tabs = [
+        { title: 'One', content: "Tabs will become paginated if there isn't enough room for them."},
+      ],
+      selected = null,
+      previous = null;
+  $scope.tabs = tabs;
+  $scope.selectedIndex = 2;
+
   var setChannel = function(id){
     $rootScope.channel = id;
   }

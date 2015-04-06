@@ -3,17 +3,66 @@
   <head>
     <link rel="stylesheet" href="./bower_components/angular-material/angular-material.css">
     <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="initial-scale=1" />
   </head>
   <body>
-    <div class="app-container" layout="column" ng-controller="PostController">
-    <md-toolbar class="md-theme-light">
-      <h1 class="md-toolbar-tools">
-        <span>POSTBIN</span>
-      </h1>
+    <div class="app-container" layout="column" ng-controller="BinController">
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+       <h1>
+         <span>POSTBIN</span>
+       </h1>
+       <span flex></span>
+       <md-button class="md-icon-button" aria-label="Favorite">
+          Add
+          <md-icon md-svg-icon="img/icons/favorite.svg" style="color: greenyellow;"></md-icon>
+       </md-button>
+       <md-button class="md-icon-button" aria-label="More">
+          Delete
+          <md-icon md-svg-icon="img/icons/more_vert.svg"></md-icon>
+       </md-button>
+      </div>
     </md-toolbar>
-    <ng-view>
-    </ng-view>
+   
+    <div class="sample" layout="column" ng-controller="PostController">
+    <md-tabs md-selected="selectedIndex" md-border-bottom>
+      <md-tab ng-repeat="tab in tabs"
+              ng-disabled="tab.disabled"
+              label="{{tab.title}}">
+        <div class="demo-tab tab{{$index%4}}" style="padding: 25px; text-align: center;">
+          <div ng-bind="tab.content"></div>
+          <br/>
+          <p>heheheh</p>
+          <md-button class="md-primary md-raised" ng-click="removeTab( tab )" ng-disabled="tabs.length <= 1">Remove Tab</md-button>
+        </div>
+      </md-tab>
+    </md-tabs>
+    <form ng-submit="addTab(tTitle,tContent)" layout="column" style="padding-top:20px;padding-left:20px;">
+       <div layout="row" layout-sm="column" layout-margin style="min-height: 75px;">
+         <md-input-container>
+           <label for="activeIndex">Active Index</label>
+           <input type="text" id="activeIndex" ng-model="selectedIndex" disabled>
+         </md-input-container>
+         <md-input-container>
+           <label for="activeTitle">Active Title</label>
+           <input type="text" id="activeTitle" ng-model="tabs[selectedIndex].title">
+         </md-input-container>
+       </div>
+       <div layout="row" layout-sm="column" layout-margin style="min-height: 75px;">
+         <span class="title">Add a new Tab:</span>
+         <md-input-container>
+           <label for="label">Label</label>
+           <input type="text" id="label" ng-model="tTitle">
+         </md-input-container>
+         <md-input-container>
+           <label for="content">Content</label>
+           <input type="text" id="content" ng-model="tContent">
+         </md-input-container>
+         <md-button class="add-tab md-primary"  type="submit" style="max-height: 40px" >Add Tab</md-button>
+       </div>
+     </form>
     </div>
+     </div>
     <script src="./bower_components/angular/angular.min.js"></script>
     <script src="./bower_components/angular-route/angular-route.min.js"></script>
     <script src="./bower_components/angular-animate/angular-animate.min.js"></script>
