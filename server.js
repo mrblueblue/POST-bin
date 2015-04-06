@@ -25,9 +25,9 @@ app.use(bodyParser.json());
 // Routes
 
 app.get('/binid', function(req, res){
-  var binID = shortid.generate();
-  logger.info(binID);
-  res.status(201).send(binID);
+  var binid = shortid.generate().toUpperCase();
+  logger.info(binid);
+  res.status(201).send(binid);
 });
 
 app.post('/:postbin', function(req, res){

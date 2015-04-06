@@ -7,46 +7,45 @@
   </head>
   <body>
     <div class="app-container" ng-controller="BinController">
-    <md-toolbar>
-      <div class="md-toolbar-tools">
-       <h1>
-         <span>POSTBIN</span>
-       </h1>
-       <span flex></span>
-       <md-button ng-click="addBin()" class="md-icon-button" aria-label="Favorite">
-          Add
-          <md-icon md-svg-icon="img/icons/favorite.svg" style="color: greenyellow;"></md-icon>
-       </md-button>
-       <md-button class="md-icon-button" aria-label="More">
-          Delete
-          <md-icon md-svg-icon="img/icons/more_vert.svg"></md-icon>
-       </md-button>
-      </div>
-    </md-toolbar>
-   
-    <div class="sample">
-    <md-tabs class="demo">
-      <md-tab ng-repeat="bin in bins" ng-disabled="bin.disabled" label="{{bin.id}}">
-        <div class="demo-tab" style="padding: 25px">
-        <md-list>
-          <md-item ng-repeat="datum in bin.contents">
-            <md-item-content>
-            <div class="md-tile-content">
-              <h5>{{ datum.timestamp | date:'MM/dd/yyyy @ h:mma:sss'}}</h5>
-              <h3>Headers</h3>
-              <h4>{{ datum.headers }}</h4>
-              <br>
-              <h3>JSON</h3>
-              <h4>{{ datum.body }}</h4>
-            </div>
-            </md-item-content>
-          <md-divider ng-if="!$last"></md-divider>
-          </md-item>
-        </md-list>
+      <md-toolbar>
+        <div class="md-toolbar-tools">
+         <h1>
+           <span>POSTBIN</span>
+         </h1>
+         <span flex></span>
+         <md-button ng-click="addBin()" class="md-icon-button" aria-label="Favorite">
+            Add
+            <md-icon md-svg-icon="img/icons/favorite.svg" style="color: greenyellow;"></md-icon>
+         </md-button>
+         <md-button class="md-icon-button" aria-label="More">
+            Delete
+            <md-icon md-svg-icon="img/icons/more_vert.svg"></md-icon>
+         </md-button>
         </div>
-      </md-tab>
-    </md-tabs>
-    </div>
+      </md-toolbar>
+      <div class="sample">
+      <md-tabs class="demo">
+        <md-tab ng-repeat="(id,data) in bins" ng-disabled="bin.disabled" label="/{{id}}">
+          <div class="demo-tab" style="padding: 25px">
+          <md-list>
+            <md-item ng-repeat="request in data.requests">
+              <md-item-content>
+              <div class="md-tile-content">
+                <h5>{{ request.timestamp | date:'MM/dd/yyyy @ h:mma:sss'}}</h5>
+                <h3>Headers</h3>
+                <h4>{{ request.headers }}</h4>
+                <br>
+                <h3>JSON</h3>
+                <h4>{{ request.body }}</h4>
+              </div>
+              </md-item-content>
+            <md-divider ng-if="!$last"></md-divider>
+            </md-item>
+          </md-list>
+          </div>
+        </md-tab>
+      </md-tabs>
+      </div>
     </div>
     <script src="./bower_components/angular/angular.min.js"></script>
     <script src="./bower_components/angular-route/angular-route.min.js"></script>
@@ -57,5 +56,3 @@
     <script src="app.js"></script>
   </body>
 </html>
-<!-- <md-button class="add-tab md-primary"  type="submit" style="max-height: 40px" >Add Tab</md-button> -->
-<!-- <md-button class="md-primary md-raised" ng-click="removeTab( bin )" ng-disabled="bins.length <= 1">Remove Tab</md-button> -->
