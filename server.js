@@ -35,7 +35,7 @@ app.post('/:postbin', function(req, res){
   logger.data('params', req.params.postbin);
   logger.data("body", req.body);
   logger.trace('headers', req.headers);
-  io.emit(req.params.postbin, {headers: req.headers, body: req.body});
+  io.emit('post', {binid: req.params.postbin, headers: req.headers, body: req.body});
   res.status(202).send('POST received!');
 });
 
