@@ -14,7 +14,7 @@ var config = {
 	'prod': {
 		env: 'prod',
 		server: {
-			port: 80,
+			port: process.env.PORT || 80,
 			hostname: process.env.HOSTNAME || '127.0.0.1'
 		},
 		logging: {
@@ -31,4 +31,4 @@ var config = {
 	}
 }
 
-module.exports = config[ process.env.NODE_ENV || 'dev' ];
+module.exports = config[ process.env.NODE_ENV || 'prod' ];

@@ -4,7 +4,8 @@
   "description": "a tool for catching and analyzing POST requests",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "postinstall": "bower install"
   },
   "repository": {
     "type": "git",
@@ -27,6 +28,7 @@
   "homepage": "https://github.com/levity-io/POST-bin",
   "dependencies": {
     "body-parser": "^1.12.2",
+    "bower": "^1.4.1",
     "express": "^4.12.3",
     "express-session": "^1.10.4",
     "gulp": "^3.8.11",
