@@ -3,7 +3,8 @@
 var express 	 = require('express'),
 		bodyParser = require('body-parser'),
 		morgan 	   = require('morgan'),
-    shortid    = require('shortid');
+    shortid    = require('shortid'),
+    cors       = require('cors');
 
 var logger  = require('./logger.js'),
 		config  = require('./config.js');
@@ -14,16 +15,17 @@ var io     = require('socket.io')(server);
 var port   = config.server.port; 
 
 // EXPRESS CONFIGRATIONS
+app.use(cors());
 app.use(morgan('dev'));
 
-// Serve Angular Client
-app.use(express.static(__dirname + '/client/'));
+// Serve React/Flux Client
+app.use('/', express.static(__dirname + '/client/'))
+app.use('/static', express.static(__dirname + '/client/'));
 
 // Middleware
 app.use(bodyParser.json());
 
 // Routes
-
 app.get('/binid', function(req, res){
   var binID = shortid.generate();
   logger.info(binID);
@@ -35,8 +37,21 @@ app.post('/:postbin', function(req, res){
   logger.data('params', req.params.postbin);
   logger.data("body", req.body);
   logger.trace('headers', req.headers);
-  io.emit(req.params.postbin, {headers: req.headers, body: req.body});
+  logger.data('WHOLE',req);
+  io.emit(req.params.postbin, {
+    headers: req.headers, 
+    body: req.body, 
+    from: req._remoteAddress,
+    time: req._startTime,
+    bytes: req.headers['content-length'],
+    params: req.params,
+    url: req.url
+  });
   res.status(202).send('POST received!');
+});
+
+app.get('/:binid', function(req, res) {
+  res.redirect('/');
 });
 
 // Initialize Server

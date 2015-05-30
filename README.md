@@ -1,14 +1,24 @@
-Gotta catch them all!
+###PostBin
 
-#####Contributing
+http://postbin.link
 
-To start contributing, first fork the repo.
+Save and inspect all your POST requests!
 
-Then add an upstream remote to the origin.
+####Tech Stack
 
-	git remote add upstream https://github.com/levity-io/POST-bin.git
+######Front-End
 
-#####Installation
+React / Flummox + Material UI
+
+######Back-End
+
+Node / Express + Socket.io
+
+######Dev
+
+Gulp + Webpack + Jest
+
+####Getting Started
 
 Before writing any code, download all the dependencies:
 
@@ -18,16 +28,10 @@ Before writing any code, download all the dependencies:
 
 Add, Commit, Pull Request, Merge, Rebase, Repeat!
 
-#####Tech Stack
+####Contributing
 
->Front-End
->>Angular
+To start contributing, first fork the repo.
 
->>Material Design
+Then add an upstream remote to the origin.
 
->Back-End
->>Node
-
->>Express
-
->>Sockets!
+	git remote add upstream https://github.com/levity-io/POST-bin.git
