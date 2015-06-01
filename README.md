@@ -1,6 +1,6 @@
 ###PostBin
 
-http://postbin.link
+http://www.postbin.link
 
 Save and inspect all your POST requests!
 
